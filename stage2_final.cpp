@@ -38,7 +38,7 @@ bool StartChildProcess(HANDLE hStdinRead, HANDLE hStdoutWrite, PROCESS_INFORMATI
     si.hStdInput = hStdinRead;
     si.dwFlags |= STARTF_USESTDHANDLES;
 
-    // Full path to echo_server.exe
+
     WCHAR commandLine[] = L"C:\\Users\\dev\\Documents\\echo_server.exe";
 
     printf("[DEBUG] Starting: %ls\n", commandLine);
