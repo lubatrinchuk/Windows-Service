@@ -47,7 +47,6 @@ void WINAPI ServiceMain(DWORD argc, LPTSTR* argv) {
 
     Log("Service RoboShell is RUNNING");
 
-    // ∆дЄм остановки
     WaitForSingleObject(g_ServiceStopEvent, INFINITE);
 
     g_ServiceStatus.dwCurrentState = SERVICE_STOPPED;
@@ -128,3 +127,4 @@ int main(int argc, char* argv[]) {
     StartServiceCtrlDispatcherA(table);
     return 0;
 }
+
