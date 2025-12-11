@@ -81,12 +81,12 @@ int main() {
 
     // Close ONLY the child's write ends that parent doesn't use
     CloseHandle(hStdoutWrite);  // Child has this, parent doesn't write to stdout
-    // DO NOT CLOSE hStdinRead - child needs it to read our commands!
+
 
     printf("[OK] Parent-child pipes connected\n");
     printf("Type commands (exit to quit):\n\n");
 
-    // Simple interactive loop
+
     while (true) {
         printf("> ");
         fflush(stdout);
@@ -98,7 +98,7 @@ int main() {
 
         int cmdLen = strlen(buffer);
 
-        // Send command to child via pipe
+        // Send command 
         if (!WriteFile(hStdinWrite, buffer, cmdLen, &bytesWritten, NULL)) {
             printf("[ERROR] WriteFile failed: %ld\n", GetLastError());
             break;
@@ -109,7 +109,7 @@ int main() {
         // Give child time to process and output
         Sleep(300);
 
-        // Read response from child via pipe
+        // Read response 
         if (!ReadFile(hStdoutRead, buffer, sizeof(buffer) - 1, &bytesRead, NULL)) {
             printf("[ERROR] ReadFile failed: %ld\n", GetLastError());
             break;
